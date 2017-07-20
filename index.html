@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<link rel="stylesheet" href="homework3.css">
+  <meta charset="UTF-8">
+
+  <title>Psychic-Game</title>
+   <h1><strong>The Psychic Game</strong></h1>
+
+   <div id="game">
+
+    <p><strong>Press any key to start playing!</strong></p>
+  </div>
+
+   <h2>Guess what letter I`m thinking of...<span id="letter"></span></h2>
+</head>
+
+<body>
+
+
+<strong id = "botton">guessesLeft</strong>&nbsp; &nbsp;<span id="guessesleft"></span>
+<br>
+<br>
+<br>
+<br>
+<strong id = "botton">wins</strong>&nbsp; &nbsp;<span id="wins"></span>
+<br>
+<br>
+<br>
+<br>
+<strong id = "botton">losses</strong>&nbsp; &nbsp;<span id="losses"></span>
+
+
+  
+
+  <script type="text/javascript">
+    // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+    var computerGuessesPossible = [`a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`, `i`, `j`, `k`, `l`, `m`, `n`, `o`, `p`, `q`, `r`, `s`, `t`, `u`, `v`, `w`, `x`, `y`, `z`];
+
+    // Creating variables to hold the number of wins, losses, and ties. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 10;
+    var guessesdiv = document.querySelector("#guessesleft");
+    var winsdiv = document.querySelector("#wins");
+    var lossesdiv = document.querySelector("#losses");
+    var letter =  document.querySelector("#letter");
+
+    var computerChoice = computerGuessesPossible[Math.floor(Math.random() * computerGuessesPossible.length)];
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+      guessesdiv. innerHTML = guessesLeft;
+      winsdiv. innerHTML = wins;
+      lossesdiv. innerHTML = losses;
+
+
+
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      
+      // Reworked our code from last step to use "else if" instead of lots of if statements.
+
+      // This logic determines the outcome of the game (win/loss/tie), and increments the appropriate number
+      if (computerChoice === userGuess){
+        wins++;
+        guessesLeft = 10;
+         computerChoice = computerGuessesPossible[Math.floor(Math.random() * computerGuessesPossible.length)];
+      }
+
+
+       if (computerChoice !== userGuess){
+         guessesLeft--;
+        
+      }
+
+      if (guessesLeft === 0) {
+        losses++
+        guessesLeft = 10;
+        alert("the letter was" + " " + computerChoice)
+         computerChoice = computerGuessesPossible[Math.floor(Math.random() * computerGuessesPossible.length)];
+         
+      }
+
+      console.log(wins);
+      console.log(losses);
+      console.log(computerChoice);
+      console.log(userGuess);
+
+        
+
+        // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses/ties.
+       // var html =
+          // "<p>You chose: " + userGuess + "</p>" +
+          // "<p>The computer chose: " + computerGuess + "</p>" +
+          // "<p>wins: " + wins + "</p>" +
+          // "<p>losses: " + losses + "</p>" +
+          // "<p>ties: " + ties + "</p>";//
+
+        // Set the inner HTML contents of the #game div to our html string
+        //document.querySelector("#game").innerHTML = html;-//
+      }
+
+
+    
+
+  </script>
+
+</body>
+
+</html>
