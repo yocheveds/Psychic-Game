@@ -67,16 +67,17 @@
       if (computerChoice === userGuess){
         wins++;
         guessesLeft = 10;
+        alert("Win Win!")
          computerChoice = computerGuessesPossible[Math.floor(Math.random() * computerGuessesPossible.length)];
       }
 
 
-       if (computerChoice !== userGuess){
+      else if (computerChoice !== userGuess && guessesLeft > 0){
          guessesLeft--;
         
       }
 
-      if (guessesLeft === 0) {
+      else if (guessesLeft === 0) {
         losses++
         guessesLeft = 10;
         alert("the letter was" + " " + computerChoice)
